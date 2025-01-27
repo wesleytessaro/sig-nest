@@ -1,0 +1,26 @@
+{
+  "name": "NestJS SIG - Sistema Integrado de Gestão",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [3000, 3306, 9080],
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "christian-kohler.path-intellisense",
+        "formulahendry.auto-rename-tag",
+        "eamodio.gitlens",
+        "mikestead.dotenv",
+        "pkief.material-icon-theme"
+      ]
+    }
+  },
+  
+  "remoteUser": "node",
+  "postCreateCommand": "cd /workspace/sistema-integrado-gestao-backend && npm install",
+  "shutdownAction": "stopCompose"
+}

@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mysql://nestjs_sig:nestjs_sig_pass@db:3306/nestjs_sig
+      - NODE_ENV=development
+    networks:
+      - nestjs_sig_network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nestjs_sig
+      MYSQL_USER: nestjs_sig
+      MYSQL_PASSWORD: nestjs_sig_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - nestjs_sig_network
+
+networks:
+  nestjs_sig_network:
+    name: nestjs_sig_network
+
+volumes:
+  mysql-data:
+    name: nestjs_sig_mysql_data
